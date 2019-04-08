@@ -1,0 +1,20 @@
+<h3>{{ _('Fan Speed Mirror') }}</h3>
+<div>
+    <form class="form-horizontal">
+        <h3>{{ _('System Commands') }}</h3>
+        <div class="control-group">
+            <label class="control-label">{{ _('Command for M106') }}</label>
+            <div class="controls">
+                <div class="input-append">
+                    <input type="text" class="input-block-level" data-bind="value: settings.plugins.FanSpeedMirror.M106command">
+                </div>
+            </div>
+             <label class="control-label">{{ _('Command for M107') }}</label>
+            <div class="controls">
+                <div class="input-append">
+                    <input type="text" class="input-block-level" data-bind="value: settings.plugins.FanSpeedMirror.M107command">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
