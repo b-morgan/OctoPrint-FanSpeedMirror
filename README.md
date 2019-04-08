@@ -15,5 +15,7 @@ or manually using this URL:
 
 * Enter a command that will be sent to the OctoPrint host when an M107 is seen in the GCode
 
+* Example bash scripts can be found in extras
+
 ![](./extras/settings.png)
 
