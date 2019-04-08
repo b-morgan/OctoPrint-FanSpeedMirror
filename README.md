@@ -11,9 +11,9 @@ or manually using this URL:
 
 ## Configuration
 
-![](./extras/settings.png)
-
 * Enter a command that will be sent to the OctoPrint host when an M106 is seen in the GCode. The value of the M106 S parameter will be appended to this command
 
 * Enter a command that will be sent to the OctoPrint host when an M107 is seen in the GCode
+
+![](./extras/settings.png)
 
