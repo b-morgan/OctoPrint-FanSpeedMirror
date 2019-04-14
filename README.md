@@ -17,5 +17,7 @@ or manually using this URL:
 
 * Example bash scripts can be found in extras
 
+* The Wiki contains some background and additional documentation
+
 ![](./extras/settings.png)
 
