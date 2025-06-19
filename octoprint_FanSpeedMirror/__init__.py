@@ -92,11 +92,14 @@ class FanSpeedMirror(octoprint.plugin.StartupPlugin,
 					cmd_line = self.M106command + " " + str(fanPwm)
 					self._logger.debug("Executing (" + cmd_line + ")")
 					try:
-						r = subprocess.call([self.M106command, str(fanPwm)])
-						if r < 0:
-							self._logger.error("Error executing command %s: %s" % (cmd_line, r))
+						p = subprocess.Popen([self.M106command, str(fanPwm)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+						o = p.communicate()[0]
+						r = p.returncode
+#						self._logger.debug("M106command %s returned: %s, o=%s" % (cmd_line, r, o))
+						if r != 0:
+							self._logger.error("Error executing M106command %s: r=%s\n o=%s" % (cmd_line, r, o))
 					except OSError as e:
-						self._logger.exception("Exception executing command %s: %s" % (cmd_line, e))
+						self._logger.exception("Exception executing M106command %s: %s" % (cmd_line, e))
 				else:
 					self._logger.debug("M106command is empty")
 		elif gcode and gcode.startswith('M107'):
@@ -104,11 +107,14 @@ class FanSpeedMirror(octoprint.plugin.StartupPlugin,
 				cmd_line = self.M107command
 				self._logger.debug("Executing (" + cmd_line + ")")
 				try:
-					r = subprocess.call(cmd_line)
-					if r < 0:
-						self._logger.error("Error executing command %s: %s" % (cmd_line, r))
+					p = subprocess.Popen(cmd_line, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+					o = p.communicate()[0]
+					r = p.returncode
+#					self._logger.debug("M107command %s returned: %s, o=%s" % (cmd_line, r, o))
+					if r != 0:
+							self._logger.error("Error executing M107command %s: r=%s\n o=%s" % (cmd_line, r, o))
 				except OSError as e:
-					self._logger.exception("Exception executing command %s: %s" % (cmd_line, e))
+					self._logger.exception("Exception executing M107command %s: %s" % (cmd_line, e))
 			else:
 				self._logger.debug("M107command is empty")
 
@@ -137,7 +143,7 @@ class FanSpeedMirror(octoprint.plugin.StartupPlugin,
 # ("OctoPrint-PluginSkeleton"), you may define that here. Same goes for the other metadata derived from setup.py that
 # can be overwritten via __plugin_xyz__ control properties. See the documentation for that.
 __plugin_name__ = "Fan Speed Mirror"
-__plugin_pythoncompat__ = ">=2.7,<4"
+__plugin_pythoncompat__ = ">=3,<4"
 
 def __plugin_load__():
 	global __plugin_implementation__
