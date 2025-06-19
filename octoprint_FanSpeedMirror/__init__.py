@@ -112,7 +112,7 @@ class FanSpeedMirror(octoprint.plugin.StartupPlugin,
 					r = p.returncode
 #					self._logger.debug("M107command %s returned: %s, o=%s" % (cmd_line, r, o))
 					if r != 0:
-							self._logger.error("Error executing M107command %s: r=%s\n o=%s" % (cmd_line, r, o))
+						self._logger.error("Error executing M107command %s: r=%s\n o=%s" % (cmd_line, r, o))
 				except OSError as e:
 					self._logger.exception("Exception executing M107command %s: %s" % (cmd_line, e))
 			else:
