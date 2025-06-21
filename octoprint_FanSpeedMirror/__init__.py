@@ -3,6 +3,7 @@ from __future__ import absolute_import
 
 from decimal import *
 import re
+import os
 import octoprint.plugin
 import subprocess
 
@@ -18,6 +19,9 @@ class FanSpeedMirror(octoprint.plugin.StartupPlugin,
 
 	def on_after_startup(self):
 #		self._logger.info("on_after_startup")
+		if not os.getenv('LG_WD'):
+			os.environ['LG_WD'] = "/tmp"
+		self._logger.debug("LG_WD= " + os.getenv('LG_WD'))
 		self.get_settings_updates()
 
 	def get_settings_defaults(self):
